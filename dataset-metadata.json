@@ -1,0 +1,26 @@
+{
+  "title": "Cannabis Strains Dataset",
+  "id": "jonusnattapong/cannabis-strains",
+  "licenses": [
+    {
+      "name": "CC0-1.0"
+    }
+  ],
+  "subtitle": "Real cannabis strain listings scraped from Seed City website",
+  "description": "This dataset contains real cannabis strain listings scraped from the Seed City website (https://www.seed-city.com/en/list-all-products). It includes strain names, breeders, descriptions, prices in GBP, discount information, pack options, product URLs, and image URLs.\n\nThe data was collected using web scraping techniques and includes the following fields:\n- strain_name: Name of the cannabis strain\n- breeder: Name of the breeder/company\n- description: Product description\n- current_price_gbp: Current price in GBP\n- original_price_gbp: Original price in GBP (if discounted)\n- discount_percent: Discount percentage\n- pack_options: Available pack sizes and prices\n- product_url: Link to the product page\n- image_url: Link to the product image\n\nThis dataset can be used for analysis of cannabis market trends, pricing, and product availability.",
+  "keywords": [
+    "cannabis",
+    "strains",
+    "marijuana",
+    "prices",
+    "market-data",
+    "web-scraping"
+  ],
+  "resources": [
+    {
+      "path": "cannabis-strains.csv",
+      "description": "Main dataset file containing all scraped cannabis strain data"
+    }
+  ],
+  "acknowledgements": "Data scraped from Seed City website. Please respect their terms of service and robots.txt when using this data."
+}
