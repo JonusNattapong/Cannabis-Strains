@@ -1,26 +1,33 @@
 {
   "title": "Cannabis Strains Dataset",
-  "id": "jonusnattapong/cannabis-strains",
+  "id": "jonusnattapong/cannabis-strains-dataset",
   "licenses": [
     {
       "name": "CC0-1.0"
     }
   ],
-  "subtitle": "Real cannabis strain listings scraped from Seed City website",
-  "description": "Real-world cannabis strain listings scraped from the Seed City catalogue (https://www.seed-city.com/en/list-all-products). Each row captures base product metadata (name, breeder, GBP prices, pack options, product/image URLs) plus detail-page narrative sections (overview, growth_and_harvest, experience), taxonomy tags (seed_type, flowering_period_type, indica_sativa, type_ratio, strain_type_summary), descriptive attributes (environment, strength, medical_strains, smell_taste, effect, climate, flavor), grow metrics (thc, cbd, yield_indoor/outdoor, height_indoor/outdoor, indoor_height_detail, indoor_flowering_time, outdoor_harvest_time, flowering_time, harvest_month, genetic_background), and merchandising indicators (stock_availability, sale_item, most_popular_seeds).\n\nScraping is performed with `scrape_seed_city.py`, which handles pagination, polite delays, and Cloudflare bypass via cloudscraper. Missing values simply reflect attributes the source page did not publish. Ideal use cases include market analysis, cultivar comparison, and cultivation planning benchmarks.",
+  "subtitle": "Real cannabis strain listings scraped from Seed City website (8,910 strains)",
+  "description": "Real-world cannabis strain listings scraped from the Seed City catalogue (https://www.seed-city.com/en/list-all-products).\n\n**Dataset Statistics:**\n- Total strains: 8,910\n- Total attributes: 39\n- Data completeness: 47.6%\n- File size: 7,577,085 bytes\n- Price range: £0.00 - £999.79\n- Average price: £82.39\n\n**Top Breeders:**\n- Seed City Bulk Cannabis Seeds: 410 strains\n- Cannabis Seed Sale Items: 288 strains\n- Royal Queen Seeds: 168 strains\n\n**Strain Types:**\n- Indica Dominant: 3499 strains\n- Sativa Dominant: 1941 strains\n- 50% Indica/50% Sativa: 1293 strains\n\nEach row captures base product metadata (name, breeder, GBP prices, pack options, product/image URLs) plus detail-page narrative sections (overview, growth_and_harvest, experience), taxonomy tags (seed_type, flowering_period_type, indica_sativa, type_ratio, strain_type_summary), descriptive attributes (environment, strength, medical_strains, smell_taste, effect, climate, flavor), grow metrics (thc, cbd, yield_indoor/outdoor, height_indoor/outdoor, indoor_height_detail, indoor_flowering_time, outdoor_harvest_time, flowering_time, harvest_month, genetic_background), and merchandising indicators (stock_availability, sale_item, most_popular_seeds).\n\nScraping is performed with `scrape_seed_city.py`, which handles pagination, polite delays, and Cloudflare bypass via cloudscraper. Missing values simply reflect attributes the source page did not publish. Ideal use cases include market analysis, cultivar comparison, and cultivation planning benchmarks.",
   "keywords": [
     "cannabis",
     "strains",
     "marijuana",
     "prices",
     "market-data",
-    "web-scraping"
+    "web-scraping",
+    "cultivation",
+    "breeders",
+    "seed-bank"
   ],
   "resources": [
     {
       "path": "cannabis-strains.csv",
-      "description": "Main dataset file containing all scraped cannabis strain data"
+      "description": "Main dataset file containing 8,910 scraped cannabis strain records",
+      "num_examples": 8910,
+      "num_columns": 39
     }
   ],
-  "acknowledgements": "Data scraped from Seed City website. Please respect their terms of service and robots.txt when using this data."
+  "acknowledgements": "Data scraped from Seed City website. Please respect their terms of service and robots.txt when using this data.",
+  "version": "1.1.0",
+  "last_updated": "2025-11-04"
 }
