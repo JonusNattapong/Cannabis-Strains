@@ -1,8 +1,97 @@
+---
+dataset_info:
+  features:
+    - name: strain_name
+      dtype: string
+    - name: breeder
+      dtype: string
+    - name: description
+      dtype: string
+    - name: current_price_gbp
+      dtype: float64
+    - name: original_price_gbp
+      dtype: float64
+    - name: discount_percent
+      dtype: float64
+    - name: pack_options
+      dtype: string
+    - name: product_url
+      dtype: string
+    - name: image_url
+      dtype: string
+    - name: overview
+      dtype: string
+    - name: growth_and_harvest
+      dtype: string
+    - name: experience
+      dtype: string
+    - name: seed_type
+      dtype: string
+    - name: flowering_period_type
+      dtype: string
+    - name: indica_sativa
+      dtype: string
+    - name: type_ratio
+      dtype: string
+    - name: strain_type_summary
+      dtype: string
+    - name: environment
+      dtype: string
+    - name: strength
+      dtype: string
+    - name: medical_strains
+      dtype: string
+    - name: smell_taste
+      dtype: string
+    - name: effect
+      dtype: string
+    - name: climate
+      dtype: string
+    - name: flavor
+      dtype: string
+    - name: thc
+      dtype: string
+    - name: cbd
+      dtype: string
+    - name: yield_indoor
+      dtype: string
+    - name: yield_outdoor
+      dtype: string
+    - name: height_indoor
+      dtype: string
+    - name: height_outdoor
+      dtype: string
+    - name: indoor_height_detail
+      dtype: string
+    - name: indoor_flowering_time
+      dtype: string
+    - name: outdoor_harvest_time
+      dtype: string
+    - name: flowering_time
+      dtype: string
+    - name: harvest_month
+      dtype: string
+    - name: genetic_background
+      dtype: string
+    - name: stock_availability
+      dtype: string
+    - name: sale_item
+      dtype: string
+    - name: most_popular_seeds
+      dtype: string
+  splits:
+    - name: train
+      num_bytes: 7577085
+      num_examples: 8910
+  download_size: 7577085
+  dataset_size: 7577085
+---
+
 # 🌿 Cannabis Strains Dataset
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Dataset Size](https://img.shields.io/badge/dataset-743%20strains-green.svg)](https://github.com/JonusNattapong/Cannabis-Strains)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+[![Dataset Size](https://img.shields.io/badge/dataset-8,910%20strains-green.svg)](https://huggingface.co/datasets/jonusnattapong/cannabis-strains-dataset)
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-blue)](https://huggingface.co/datasets/jonusnattapong/cannabis-strains-dataset)
 
 A comprehensive dataset of cannabis strain listings scraped from [Seed City](https://www.seed-city.com/en/list-all-products), featuring detailed cultivation information, pricing, and strain characteristics.
 
@@ -16,174 +105,49 @@ A comprehensive dataset of cannabis strain listings scraped from [Seed City](htt
 - **Price Range**: £0.00 - £999.79 GBP
 - **Format**: CSV with UTF-8 encoding
 
-## 🏗️ Installation & Setup
-
-### Prerequisites
-- Python 3.8 or higher
-- pip package manager
-
-### Install Dependencies
-```bash
-pip install cloudscraper beautifulsoup4 pandas requests
-```
-
-### Optional Dependencies (for analysis)
-```bash
-pip install jupyter matplotlib seaborn scikit-learn
-```
-
-## 📋 Dataset Metadata
-
-The dataset includes a comprehensive metadata file (`dataset-metadata.json`) that follows the Hugging Face dataset format:
-
-### Metadata Structure
-```json
-{
-  "title": "Cannabis Strains Dataset",
-  "id": "jonusnattapong/cannabis-strains-dataset",
-  "licenses": [{"name": "CC0-1.0"}],
-  "subtitle": "Real cannabis strain listings scraped from Seed City website (8,910 strains)",
-  "description": "Detailed description with statistics and field explanations...",
-  "keywords": [
-    "cannabis", "strains", "marijuana", "prices",
-    "market-data", "web-scraping", "cultivation", "breeders", "seed-bank"
-  ],
-  "resources": [
-    {
-      "path": "cannabis-strains.csv",
-      "description": "Main dataset file containing 8,910 scraped cannabis strain records",
-      "num_examples": 8910,
-      "num_columns": 39
-    }
-  ],
-  "acknowledgements": "Data scraped from Seed City website...",
-  "version": "1.1.0",
-  "last_updated": "2025-11-04"
-}
-```
-
-### Automatic Metadata Updates
-To keep metadata synchronized with the actual dataset:
-```bash
-# Update metadata with current statistics
-python update_metadata.py
-
-# This will:
-# - Count actual rows and columns
-# - Calculate completeness percentage
-# - Update price statistics
-# - Refresh top breeders list
-# - Update file size information
-```
-
-### Metadata Fields Explained
-- **title**: Dataset name
-- **id**: Hugging Face dataset identifier
-- **licenses**: Open data license (CC0-1.0 for public domain)
-- **subtitle**: Brief description with record count
-- **description**: Detailed description including statistics
-- **keywords**: Search tags for discoverability
-- **resources**: File information and statistics
-- **version**: Dataset version number
-- **last_updated**: ISO date format
-
-### Validation
-The metadata is automatically validated when uploading to Hugging Face. If you encounter validation errors like:
-```
-SplitInfo mismatch: expected X examples, recorded Y examples
-```
-Run `python update_metadata.py` to synchronize the metadata with your current dataset.
+## 📋 Data Fields
 
 ### Core Listing Information
-- **strain_name** – Product/strain title from Seed City
-- **breeder** – Brand or breeder responsible for the listing
-- **description** – Short marketing excerpt from the browse page
-- **current_price_gbp**, **original_price_gbp**, **discount_percent** – GBP pricing metadata
-- **pack_options** – Pack sizes and GBP prices from dropdown
-- **product_url**, **image_url** – Direct product and thumbnail links
+- **strain_name** (string) – Product/strain title from Seed City
+- **breeder** (string) – Brand or breeder responsible for the listing
+- **description** (string) – Short marketing excerpt from the browse page
+- **current_price_gbp** (float64), **original_price_gbp** (float64), **discount_percent** (float64) – GBP pricing metadata
+- **pack_options** (string) – Pack sizes and GBP prices from dropdown
+- **product_url** (string), **image_url** (string) – Direct product and thumbnail links
 
 ### Detailed Strain Characteristics
-- **overview**, **growth_and_harvest**, **experience** – Narrative sections from detail pages
-- **seed_type**, **flowering_period_type**, **indica_sativa**, **type_ratio**, **strain_type_summary** – Taxonomy and classification
-- **environment**, **strength**, **medical_strains**, **smell_taste**, **effect**, **climate**, **flavor** – Qualitative descriptors
-- **thc**, **cbd** – Cannabinoid content percentages
-- **yield_indoor**, **yield_outdoor** – Expected yields
-- **height_indoor**, **height_outdoor**, **indoor_height_detail** – Plant stature metrics
-- **indoor_flowering_time**, **outdoor_harvest_time**, **flowering_time**, **harvest_month** – Cultivation timelines
-- **genetic_background** – Strain lineage information
-- **stock_availability**, **sale_item**, **most_popular_seeds** – Merchandising flags
+- **overview** (string), **growth_and_harvest** (string), **experience** (string) – Narrative sections from detail pages
+- **seed_type** (string), **flowering_period_type** (string), **indica_sativa** (string), **type_ratio** (string), **strain_type_summary** (string) – Taxonomy and classification
+- **environment** (string), **strength** (string), **medical_strains** (string), **smell_taste** (string), **effect** (string), **climate** (string), **flavor** (string) – Qualitative descriptors
+- **thc** (string), **cbd** (string) – Cannabinoid content percentages
+- **yield_indoor** (string), **yield_outdoor** (string) – Expected yields
+- **height_indoor** (string), **height_outdoor** (string), **indoor_height_detail** (string) – Plant stature metrics
+- **indoor_flowering_time** (string), **outdoor_harvest_time** (string), **flowering_time** (string), **harvest_month** (string) – Cultivation timelines
+- **genetic_background** (string) – Strain lineage information
+- **stock_availability** (string), **sale_item** (string), **most_popular_seeds** (string) – Merchandising flags
 
 > **Note**: Missing values indicate that the source page omitted that attribute. This is normal and expected.
 
-## 🔄 Data Collection & Updates
-
-### Basic Scraping
-```bash
-# Scrape new data (continues from existing CSV)
-python scrape_seed_city.py
-
-# Scrape specific number of new records
-python scrape_seed_city.py 50
-```
-
-### Advanced Options
-```bash
-# Analyze missing data patterns
-python analyze_missing_data.py
-
-# Use ML to fill missing data (fast alternative)
-python ml_fill_strategy.py
-```
-
-### Configuration
-The scraper includes built-in rate limiting:
-- `REQUEST_PAUSE_SEC = 0.6` – Delay between catalog pages
-- `DETAIL_REQUEST_PAUSE_SEC = 0.35` – Delay between detail page fetches
-- `MAX_EMPTY_PAGES = 3` – Stop if no new data found
-
-## 📈 Data Quality & Missing Values
-
-Current dataset completeness: **47.6%**
-- **sale_item**: 11.44% complete (88.56% missing)
-- **discount_percent**: 11.57% complete (88.43% missing)
-- **outdoor_harvest_time**: 36.74% complete (63.26% missing)
-- **indoor_height_detail**: 47.24% complete (52.76% missing)
-- **smell_taste**: 79.81% complete (20.19% missing)
-
-### Strategies to Improve Completeness
-
-1. **ML-Based Filling** (Recommended - 10-15 minutes)
-   ```bash
-   python ml_fill_strategy.py
-   ```
-   - Uses breeder patterns and strain naming conventions
-   - Fills ~40% of missing data using intelligent inference
-
-2. **Continue Web Scraping** (4+ hours)
-   ```bash
-   python scrape_seed_city.py --refetch
-   ```
-   - Fetches remaining detail pages
-   - 100% accurate but time-consuming
-
-3. **Hybrid Approach** (1-2 hours - Best Balance)
-   - Run ML filling first
-   - Then scrape remaining high-priority fields
-
 ## 🚀 Quick Start
 
-### Load and Explore Data
+### Load the Dataset
+```python
+from datasets import load_dataset
+
+# Load from Hugging Face
+dataset = load_dataset("jonusnattapong/cannabis-strains-dataset")
+
+# Access the data
+df = dataset['train'].to_pandas()
+print(f"Dataset shape: {df.shape}")
+```
+
+### Alternative: Load from CSV
 ```python
 import pandas as pd
 
-# Load the dataset
-df = pd.read_csv("cannabis-strains.csv")
-
-# Basic overview
-print(f"Dataset shape: {df.shape}")
-print(f"Columns: {list(df.columns)}")
-
-# View first few rows
+# Direct CSV loading
+df = pd.read_csv("https://huggingface.co/datasets/jonusnattapong/cannabis-strains-dataset/resolve/main/cannabis-strains.csv")
 df.head()
 ```
 
@@ -199,77 +163,49 @@ df.groupby('breeder')['current_price_gbp'].mean().sort_values(ascending=False).h
 df['indica_sativa'].value_counts()
 ```
 
-## 📊 Exploratory Data Analysis
+## 📊 Data Quality & Statistics
 
-See `cannabis-strains.ipynb` for comprehensive analysis including:
-- Price distributions and correlations
-- Strain type analysis
-- Breeder market share
-- Missing data visualization
-- Cultivation parameter insights
+Current dataset completeness: **47.6%**
+- **sale_item**: 11.44% complete (88.56% missing)
+- **discount_percent**: 11.57% complete (88.43% missing)
+- **outdoor_harvest_time**: 36.74% complete (63.26% missing)
+- **indoor_height_detail**: 47.24% complete (52.76% missing)
+- **smell_taste**: 79.81% complete (20.19% missing)
 
-### Key Insights from Current Data
+### Key Insights
 - **Price Range**: £0.00 - £999.79 GBP
 - **Most Common Type**: Feminized seeds (90%+)
 - **Popular Categories**: Autoflowering, Indica-dominant, High-THC strains
 - **Top Breeders**: Seed City Bulk Cannabis Seeds, Cannabis Seed Sale Items, Royal Queen Seeds
 
-## 🤖 ML Data Completion
+## 🔄 Data Collection
 
-The project includes intelligent data filling strategies:
+The dataset was collected using web scraping techniques from Seed City's product catalog. The scraping process includes:
 
-### Breeder-Based Inference
-```python
-# Example: Infer strain types based on breeder patterns
-breeder_patterns = df.groupby('breeder')['indica_sativa'].agg(lambda x: x.mode().iloc[0] if len(x.mode()) > 0 else 'Unknown')
-```
+- **Rate Limiting**: Polite delays between requests (0.6s catalog, 0.35s details)
+- **Cloudflare Bypass**: Using cloudscraper to handle anti-bot protection
+- **Error Handling**: Robust retry logic for failed requests
+- **Data Validation**: Quality checks on scraped content
 
-### Name Pattern Recognition
-- "Auto" strains → Autoflowering
-- "Kush" strains → Indica-dominant
-- "Haze" strains → Sativa-dominant
-- THC/CBD ratios from descriptions
-
-## 📤 Data Publishing
-
-### Upload to Hugging Face
+### Update Process
 ```bash
-python upload_hf.py
-```
+# From the source repository
+git clone https://github.com/JonusNattapong/Cannabis-Strains.git
+cd Cannabis-Strains
 
-### GitHub Integration
-```bash
-git add .
-git commit -m "Update dataset with new strains"
-git push origin main
-```
+# Scrape new data
+python scrape_seed_city.py
 
-## 🔧 Development
+# Update metadata
+python update_metadata.py
 
-### Project Structure
+# Upload to Hugging Face
+python upload_hf_updated.py
 ```
-cannabis-strains/
-├── cannabis-strains.csv          # Main dataset
-├── scrape_seed_city.py           # Web scraper
-├── analyze_missing_data.py       # Data quality analysis
-├── ml_fill_strategy.py           # ML-based data completion
-├── upload_hf.py                  # Hugging Face uploader
-├── cannabis-strains.ipynb        # Analysis notebook
-├── dataset-metadata.json         # Dataset metadata
-├── README.md                     # This file
-└── .gitignore                    # Git ignore rules
-```
-
-### Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This dataset is released under the **CC0 1.0 Universal (CC0 1.0) Public Domain Dedication**.
 
 ## ⚠️ Legal Notice
 
@@ -283,6 +219,6 @@ This dataset is for educational and research purposes only. Cannabis laws vary b
 
 ---
 
+**Dataset Version**: v1.1.0
 **Last Updated**: November 2025
-**Dataset Version**: v1.0
-**Contact**: [GitHub Issues](https://github.com/JonusNattapong/Cannabis-Strains/issues)
+**Source Repository**: [GitHub](https://github.com/JonusNattapong/Cannabis-Strains)
