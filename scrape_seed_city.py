@@ -134,123 +134,6 @@ class StrainRecord:
         return base
 
 
-def enrich_record_with_ai(record: StrainRecord) -> StrainRecord:
-    """
-    Use AI/logic to fill missing fields in the record based on available data.
-    This simulates AI enrichment for missing cannabis strain information.
-    """
-    import random
-    
-    # Create a copy of extra dict
-    enriched_extra = record.extra.copy()
-    
-    # Fill overview if missing
-    if not enriched_extra.get("overview"):
-        if record.description:
-            enriched_extra["overview"] = f"This is {record.strain_name}, a high-quality cannabis strain known for its unique characteristics and effects."
-    
-    # Fill growth_and_harvest if missing
-    if not enriched_extra.get("growth_and_harvest"):
-        enriched_extra["growth_and_harvest"] = "This strain grows well in both indoor and outdoor environments with proper care and nutrients."
-    
-    # Fill experience if missing
-    if not enriched_extra.get("experience"):
-        enriched_extra["experience"] = "Users report a balanced and enjoyable experience with this strain."
-    
-    # Fill type_ratio if missing but indica_sativa exists
-    if not enriched_extra.get("type_ratio") and enriched_extra.get("indica_sativa"):
-        if "Indica Dominant" in enriched_extra["indica_sativa"]:
-            enriched_extra["type_ratio"] = "70% Indica / 30% Sativa"
-        elif "Sativa Dominant" in enriched_extra["indica_sativa"]:
-            enriched_extra["type_ratio"] = "30% Indica / 70% Sativa"
-        else:
-            enriched_extra["type_ratio"] = "50% Indica / 50% Sativa"
-    
-    # Fill strain_type_summary if missing
-    if not enriched_extra.get("strain_type_summary"):
-        if enriched_extra.get("indica_sativa"):
-            enriched_extra["strain_type_summary"] = enriched_extra["indica_sativa"]
-        else:
-            enriched_extra["strain_type_summary"] = "Hybrid"
-    
-    # Fill medical_strains if missing
-    if not enriched_extra.get("medical_strains"):
-        medical_conditions = ["Pain Relief", "Anxiety", "Insomnia", "Appetite Stimulation", "Nausea"]
-        enriched_extra["medical_strains"] = ", ".join(random.sample(medical_conditions, random.randint(1, 3)))
-    
-    # Fill effect if missing
-    if not enriched_extra.get("effect"):
-        effects = ["Relaxed", "Euphoric", "Creative", "Energetic", "Sleepy", "Focused"]
-        enriched_extra["effect"] = ", ".join(random.sample(effects, random.randint(1, 3)))
-    
-    # Fill climate if missing
-    if not enriched_extra.get("climate"):
-        climates = ["Temperate", "Mediterranean", "Tropical", "Continental"]
-        enriched_extra["climate"] = random.choice(climates)
-    
-    # Fill flavor if missing
-    if not enriched_extra.get("flavor"):
-        flavors = ["Earthy", "Citrus", "Berry", "Pine", "Sweet", "Spicy"]
-        enriched_extra["flavor"] = ", ".join(random.sample(flavors, random.randint(1, 3)))
-    
-    # Fill THC if missing
-    if not enriched_extra.get("thc"):
-        if "Sativa" in enriched_extra.get("indica_sativa", ""):
-            thc = round(random.uniform(15, 25), 1)
-        elif "Indica" in enriched_extra.get("indica_sativa", ""):
-            thc = round(random.uniform(18, 28), 1)
-        else:
-            thc = round(random.uniform(15, 28), 1)
-        enriched_extra["thc"] = f"{thc}%"
-    
-    # Fill CBD if missing
-    if not enriched_extra.get("cbd"):
-        cbd = round(random.uniform(0.1, 2.0), 1)
-        enriched_extra["cbd"] = f"{cbd}%"
-    
-    # Fill yield_indoor if missing
-    if not enriched_extra.get("yield_indoor"):
-        yield_indoor = round(random.uniform(400, 800), 0)
-        enriched_extra["yield_indoor"] = f"{yield_indoor}g/m²"
-    
-    # Fill yield_outdoor if missing
-    if not enriched_extra.get("yield_outdoor"):
-        yield_outdoor = round(random.uniform(500, 1200), 0)
-        enriched_extra["yield_outdoor"] = f"{yield_outdoor}g/plant"
-    
-    # Fill height_indoor if missing
-    if not enriched_extra.get("height_indoor"):
-        height_indoor = round(random.uniform(80, 180), 0)
-        enriched_extra["height_indoor"] = f"{height_indoor}cm"
-    
-    # Fill height_outdoor if missing
-    if not enriched_extra.get("height_outdoor"):
-        height_outdoor = round(random.uniform(150, 300), 0)
-        enriched_extra["height_outdoor"] = f"{height_outdoor}cm"
-    
-    # Fill flowering_time if missing
-    if not enriched_extra.get("flowering_time"):
-        if enriched_extra.get("flowering_period_type") == "Autoflowering":
-            days = random.randint(60, 90)
-        else:
-            days = random.randint(56, 84)
-        enriched_extra["flowering_time"] = f"{days} days"
-    
-    # Fill harvest_month if missing
-    if not enriched_extra.get("harvest_month"):
-        months = ["September", "October", "November", "Early October", "Mid October", "Late October"]
-        enriched_extra["harvest_month"] = random.choice(months)
-    
-    # Fill genetic_background if missing
-    if not enriched_extra.get("genetic_background"):
-        backgrounds = ["Afghani x Thai", "Haze x Skunk", "Northern Lights x Haze", "Afghani x Mexican", "Colombian x Mexican"]
-        enriched_extra["genetic_background"] = random.choice(backgrounds)
-    
-    # Update the record with enriched data
-    record.extra = enriched_extra
-    return record
-
-
 def parse_price(value: Optional[str]) -> Optional[float]:
     if not value:
         return None
@@ -588,25 +471,14 @@ def main(max_records: Optional[int] = None) -> None:
     existing_records = read_existing_records(OUTPUT_PATH)
     existing_urls = {record.product_url for record in existing_records if record.product_url}
     
-    # Collect new records only if max_records is specified and > 0
-    new_records = []
-    if max_records and max_records > 0:
-        new_records = collect_records(max_records, existing_urls)
+    # Collect new records, skipping existing URLs
+    new_records = collect_records(max_records, existing_urls)
     
     # Combine existing and new records
     all_records = existing_records + new_records
     
-    # Enrich records with AI-generated missing data
-    logging.info("Enriching records with AI-generated data for missing fields...")
-    enriched_records = []
-    for i, record in enumerate(all_records):
-        enriched_record = enrich_record_with_ai(record)
-        enriched_records.append(enriched_record)
-        if (i + 1) % 100 == 0:
-            logging.info("Enriched %s records so far...", i + 1)
-    
     # Write all records to CSV
-    write_csv(enriched_records, OUTPUT_PATH)
+    write_csv(all_records, OUTPUT_PATH)
 
 
 def is_valid_record(record: StrainRecord) -> bool:
