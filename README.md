@@ -32,7 +32,67 @@ pip install cloudscraper beautifulsoup4 pandas requests
 pip install jupyter matplotlib seaborn scikit-learn
 ```
 
-## 📋 Data Fields
+## 📋 Dataset Metadata
+
+The dataset includes a comprehensive metadata file (`dataset-metadata.json`) that follows the Hugging Face dataset format:
+
+### Metadata Structure
+```json
+{
+  "title": "Cannabis Strains Dataset",
+  "id": "jonusnattapong/cannabis-strains-dataset",
+  "licenses": [{"name": "CC0-1.0"}],
+  "subtitle": "Real cannabis strain listings scraped from Seed City website (8,910 strains)",
+  "description": "Detailed description with statistics and field explanations...",
+  "keywords": [
+    "cannabis", "strains", "marijuana", "prices",
+    "market-data", "web-scraping", "cultivation", "breeders", "seed-bank"
+  ],
+  "resources": [
+    {
+      "path": "cannabis-strains.csv",
+      "description": "Main dataset file containing 8,910 scraped cannabis strain records",
+      "num_examples": 8910,
+      "num_columns": 39
+    }
+  ],
+  "acknowledgements": "Data scraped from Seed City website...",
+  "version": "1.1.0",
+  "last_updated": "2025-11-04"
+}
+```
+
+### Automatic Metadata Updates
+To keep metadata synchronized with the actual dataset:
+```bash
+# Update metadata with current statistics
+python update_metadata.py
+
+# This will:
+# - Count actual rows and columns
+# - Calculate completeness percentage
+# - Update price statistics
+# - Refresh top breeders list
+# - Update file size information
+```
+
+### Metadata Fields Explained
+- **title**: Dataset name
+- **id**: Hugging Face dataset identifier
+- **licenses**: Open data license (CC0-1.0 for public domain)
+- **subtitle**: Brief description with record count
+- **description**: Detailed description including statistics
+- **keywords**: Search tags for discoverability
+- **resources**: File information and statistics
+- **version**: Dataset version number
+- **last_updated**: ISO date format
+
+### Validation
+The metadata is automatically validated when uploading to Hugging Face. If you encounter validation errors like:
+```
+SplitInfo mismatch: expected X examples, recorded Y examples
+```
+Run `python update_metadata.py` to synchronize the metadata with your current dataset.
 
 ### Core Listing Information
 - **strain_name** – Product/strain title from Seed City
@@ -193,52 +253,12 @@ cannabis-strains/
 ├── scrape_seed_city.py           # Web scraper
 ├── analyze_missing_data.py       # Data quality analysis
 ├── ml_fill_strategy.py           # ML-based data completion
-├── update_metadata.py            # Metadata management script
-├── upload_hf_updated.py          # Enhanced HF upload script
 ├── upload_hf.py                  # Hugging Face uploader
 ├── cannabis-strains.ipynb        # Analysis notebook
 ├── dataset-metadata.json         # Dataset metadata
 ├── README.md                     # This file
 └── .gitignore                    # Git ignore rules
 ```
-
-### Metadata Management
-The dataset includes automated metadata management to ensure consistency:
-
-```bash
-# Update metadata with current dataset statistics
-python update_metadata.py
-
-# Upload to Hugging Face with correct metadata
-python upload_hf_updated.py
-```
-
-### Troubleshooting
-
-#### Dataset Metadata Mismatch Error
-If you encounter validation errors like:
-```
-[{'expected': SplitInfo(name='train', num_bytes=6704078, num_examples=8215, ...),
-  'recorded': SplitInfo(name='train', num_bytes=8644589, num_examples=8910, ...)}]
-```
-
-This means the Hugging Face dataset metadata doesn't match the actual data. To fix:
-
-1. **Update metadata**: Run `python update_metadata.py` to recalculate statistics
-2. **Verify data integrity**: Check that `cannabis-strains.csv` matches the metadata
-3. **Re-upload**: Use `python upload_hf_updated.py` with proper HF token permissions
-
-**Root Cause**: Dataset grows over time but HF metadata becomes stale.
-
-#### Common Scraping Issues
-- **Cloudflare blocks**: The scraper uses `cloudscraper` to bypass protection
-- **Rate limiting**: Built-in delays prevent IP blocking
-- **Incomplete data**: Some fields are missing from source pages (normal)
-
-#### Data Quality Issues
-- **Missing values**: Expected due to source website limitations
-- **Inconsistent formats**: Data comes from various breeders with different standards
-- **Price variations**: GBP pricing may change over time
 
 ### Contributing
 1. Fork the repository
