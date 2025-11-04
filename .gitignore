@@ -27,3 +27,4 @@ cannabis-strains-2.csv
 # Local environment files (do NOT commit secrets)
 .env
 .env.*
+!.env.example
