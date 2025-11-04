@@ -24,3 +24,6 @@ coverage.xml
 temp_metadata.md
 cannabis-strains-1.csv
 cannabis-strains-2.csv
+# Local environment files (do NOT commit secrets)
+.env
+.env.*
