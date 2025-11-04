@@ -8,10 +8,12 @@ A comprehensive dataset of cannabis strain listings scraped from [Seed City](htt
 
 ## 📊 Dataset Overview
 
-- **Total Records**: 743 cannabis strains
+- **Total Records**: 8,910 cannabis strains
 - **Total Columns**: 39 attributes
 - **Data Source**: Seed City (UK-based seed bank)
 - **Last Updated**: November 2025
+- **Data Completeness**: 47.6%
+- **Price Range**: £0.00 - £999.79 GBP
 - **Format**: CSV with UTF-8 encoding
 
 ## 🏗️ Installation & Setup
@@ -81,7 +83,7 @@ The scraper includes built-in rate limiting:
 
 ## 📈 Data Quality & Missing Values
 
-Current dataset completeness:
+Current dataset completeness: **47.6%**
 - **sale_item**: 11.44% complete (88.56% missing)
 - **discount_percent**: 11.57% complete (88.43% missing)
 - **outdoor_harvest_time**: 36.74% complete (63.26% missing)
@@ -147,10 +149,10 @@ See `cannabis-strains.ipynb` for comprehensive analysis including:
 - Cultivation parameter insights
 
 ### Key Insights from Current Data
-- **Price Range**: £10.00 - £500.00+ per pack
+- **Price Range**: £0.00 - £999.79 GBP
 - **Most Common Type**: Feminized seeds (90%+)
 - **Popular Categories**: Autoflowering, Indica-dominant, High-THC strains
-- **Top Breeders**: Royal Queen Seeds, FastBuds, Seed Stockers
+- **Top Breeders**: Seed City Bulk Cannabis Seeds, Cannabis Seed Sale Items, Royal Queen Seeds
 
 ## 🤖 ML Data Completion
 
